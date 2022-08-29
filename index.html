@@ -6,14 +6,16 @@
   <title>GH pages PWA</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📲</text></svg>">
   <link rel="canonical" href="https://norgeous.github.io/gh-pages-pwa/" />
-  <link rel="manifest" href="/gh-pages-pwa/manifest.json">
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <h1>GH pages PWA</h1>
 
+  updated
+
   <script>
     if (navigator.serviceWorker) {
-      navigator.serviceWorker.register('/gh-pages-pwa/sw.js', {scope: '/gh-pages-pwa/'})
+      navigator.serviceWorker.register('sw.js', {scope: './'})
     }
   </script>
 </body>
