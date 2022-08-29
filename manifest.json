@@ -10,19 +10,10 @@
   "orientation": "landscape",
   "icons": [
     {
-      "src": "app-icon.png",
-      "type": "image/png",
-      "sizes": "700x700 1280x1280"
-    }
-  ],
-  "dir": "ltr",
-  "shortcuts": [],
-  "categories": [],
-  "screenshots": [
-    {
-      "src": "screenshot-1.png",
-      "sizes": "1280x800",
-      "type": "image/png"
+      "src": "icon.svg",
+      "type":"image/svg+xml",
+      "purpose": "any",
+      "sizes": "32x32 48x48 64x64 72x72 96x96 128x128 152x152 168x168 192x192 256x256 384x384 512x512 700x700 1280x1280"
     }
   ]
 }
