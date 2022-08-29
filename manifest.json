@@ -1,29 +1,28 @@
 {
-    "background_color": "#ffffff",
-    "description": "Github pages PWA",
-    "dir": "ltr",
-    "display": "fullscreen",
-    "name": "PWA",
-    "orientation": "landscape",
-    "scope": "/gh-pages-pwa/",
-    "short_name": "PWA",
-    "start_url": "/gh-pages-pwa/",
-    "theme_color": "#ffffff",
-    "categories": [],
-    "screenshots": [
-      {
-        "src": "/gh-pages-pwa/screenshot-1.png",
-        "sizes": "1280x800",
-        "type": "image/png"
-      }
-    ],
-    "icons": [
-        {
-          "src": "/gh-pages-pwa/app-icon.png",
-          "type": "image/png",
-          "sizes": "1280x1280"
-        }
-      ],
-     "shortcuts": []
-  }
-  
+  "background_color": "#ffffff",
+  "description": "Github pages PWA",
+  "dir": "ltr",
+  "display": "fullscreen",
+  "name": "PWA",
+  "orientation": "landscape",
+  "scope": "./",
+  "short_name": "PWA",
+  "start_url": "./",
+  "theme_color": "#ffffff",
+  "categories": [],
+  "screenshots": [
+    {
+      "src": "screenshot-1.png",
+      "sizes": "1280x800",
+      "type": "image/png"
+    }
+  ],
+  "icons": [
+    {
+      "src": "app-icon.png",
+      "type": "image/png",
+      "sizes": "700x700 1280x1280"
+    }
+  ],
+  "shortcuts": []
+}
