@@ -1,10 +1,10 @@
 var APP_PREFIX = 'pwa_';
 var VERSION = 'v1.0.0';
 var CACHE_NAME = APP_PREFIX + VERSION
-var URLS = [    
-  '/gh-pages-pwa/',
-  '/gh-pages-pwa/index.html'
-]
+// var URLS = [    
+//   '/gh-pages-pwa/',
+//   '/gh-pages-pwa/index.html'
+// ]
 
 self.addEventListener('fetch', function (e) {
   console.log('fetch request : ' + e.request.url);
@@ -21,14 +21,14 @@ self.addEventListener('fetch', function (e) {
   )
 })
 
-self.addEventListener('install', function (e) {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then(function (cache) {
-      console.log('installing cache : ' + CACHE_NAME);
-      return cache.addAll(URLS)
-    })
-  )
-})
+// self.addEventListener('install', function (e) {
+//   e.waitUntil(
+//     caches.open(CACHE_NAME).then(function (cache) {
+//       console.log('installing cache : ' + CACHE_NAME);
+//       return cache.addAll(URLS)
+//     })
+//   )
+// })
 
 self.addEventListener('activate', function (e) {
   e.waitUntil(
