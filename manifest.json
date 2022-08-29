@@ -10,10 +10,9 @@
   "orientation": "landscape",
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "32x32 48x48 64x64 72x72 96x96 128x128 168x168 192x192 256x256 512x512 700x700 1280x1280",
-      "type": "image/svg+xml",
-      "purpose": "any"
+      "src": "app-icon.png",
+      "type": "image/png",
+      "sizes": "700x700 1280x1280"
     }
   ],
   "dir": "ltr",
