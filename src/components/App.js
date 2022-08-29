@@ -4,8 +4,9 @@ import usePhaser from '../phaser/usePhaser';
 
 const Section = styled.section`
   padding: 20px;
-  background: #404;
+  background: #4049;
   text-align: center;
+  position: absolute;
 `;
 
 const Heading = styled.div`
@@ -22,7 +23,8 @@ const A = styled.a`
 `;
 
 const App = () => {
-  const {game} = usePhaser();
+  const { game } = usePhaser();
+  console.log(game);
   return (
     <>
       <Section>

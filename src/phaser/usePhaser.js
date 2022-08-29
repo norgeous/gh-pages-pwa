@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import Phaser from 'phaser';
 
+const width = window.innerWidth * window.devicePixelRatio;
+const height = window.innerHeight * window.devicePixelRatio;
+
 function preload () {
   this.load.setBaseURL('https://labs.phaser.io');
   this.load.image('sky', 'assets/skies/space3.png');
@@ -9,14 +12,14 @@ function preload () {
 }
 
 function create () {
-  this.add.image(400, 300, 'sky');
+  this.add.image(width/2, height/2, 'sky');
   var particles = this.add.particles('red');
   var emitter = particles.createEmitter({
-      speed: 100,
-      scale: { start: 1, end: 0 },
-      blendMode: 'ADD'
+    speed: 100,
+    scale: { start: 1, end: 0 },
+    blendMode: 'ADD'
   });
-  var logo = this.physics.add.image(400, 100, 'logo');
+  var logo = this.physics.add.image(width/2, height/3, 'logo');
   logo.setVelocity(100, 200);
   logo.setBounce(1, 1);
   logo.setCollideWorldBounds(true);
@@ -26,18 +29,16 @@ function create () {
 const config = {
   type: Phaser.AUTO,
   scale: {
-      mode: Phaser.Scale.FIT,
-      parent: 'phaser',
-      autoCenter: Phaser.Scale.CENTER_BOTH,
-      width: 800,
-      height: 600
+    mode: Phaser.Scale.FIT,
+    parent: 'phaser',
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width,
+    height,
   },
-  // width: 800,
-  // height: 600,
   physics: {
     default: 'arcade',
     arcade: {
-        gravity: { y: 200 }
+      gravity: { y: 200 }
     }
   },
   scene: {
