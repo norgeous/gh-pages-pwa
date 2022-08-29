@@ -7,6 +7,7 @@ const Heading = styled.div`
 
 const A = styled.a`
   font-size: 20px;
+  text-decoration: none;
   :visited,
   :hover {
     color: #077;
