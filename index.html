@@ -2,17 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GH pages PWA</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📲</text></svg>">
   <link rel="canonical" href="https://norgeous.github.io/gh-pages-pwa/" />
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <h1>GH pages PWA</h1>
+  <noscript>
+    javascript must be enabled!
+    <style> .js-enabled { display: none; } </style>
+  </noscript>
 
-  updated 4
-  
+  <div id="root" class="js-enabled"><div class="spin loader">🌀</div></div>
+
+  <script async src="https://ga.jspm.io/npm:es-module-shims@0.10.1/dist/es-module-shims.min.js"></script>
+
+  <!-- jspm, jsdelivr, skypack, unpkg, cdnjs, esm.sh, esm.run, cdnpkg.com -->
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://cdn.skypack.dev/react",
+        "react-dom": "https://cdn.skypack.dev/react-dom",
+        "styled-components": "https://cdn.skypack.dev/styled-components",
+        "phaser": "https://esm.sh/phaser"
+      }
+    }
+  </script>
+
   <script async src="service-worker-register.js"></script>
 </body>
 </html>
