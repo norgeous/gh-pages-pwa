@@ -4,14 +4,16 @@
 
 https://norgeous.github.io/gh-pages-pwa
 
-
 ## features
 
-- PWA with offline mode
 - Zero install
 - Zero build
-- Clientside es modules (via importmap + skypack cdn)
-- Clientside React transpilation (via babel-standalone within service worker)
-- styled-components
-- less css compiler
-- Emoji can be used for favicon and PWA icon
+- Clientside ES modules
+  - via importmap and skypack cdn
+  - styled-components
+  - less css compiler
+- Clientside React and ES transpilation
+  - via babel-standalone (within service-worker)
+- PWA
+  - offline mode, with automatic caching of all loaded files
+  - Emoji can be used for PWA icon (and favicon)
