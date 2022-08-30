@@ -1,13 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import usePhaser from '../phaser/usePhaser';
-
-const Section = styled.section`
-  padding: 20px;
-  background: #4049;
-  text-align: center;
-  position: absolute;
-`;
+import { TopLeft, TopRight, BottomRight, BottomLeft, Overlay } from './styled';
 
 const Heading = styled.div`
   font-size: 30px;
@@ -24,16 +18,20 @@ const A = styled.a`
 
 const App = () => {
   const { game } = usePhaser();
-  console.log(game);
+  // console.log(game);
   return (
     <>
-      <Section>
+      <Overlay>
         <img src="icon.svg" width="80" />
         <Heading>React app!</Heading>
         <A href="https://github.com/norgeous/gh-pages-pwa/" target="_blank">
           norgeous/gh-pages-pwa
         </A>
-      </Section>
+      </Overlay>
+      <TopLeft>1,000,000</TopLeft>
+      <TopRight><button>⚙️</button></TopRight>
+      <BottomRight>🪙x22</BottomRight>
+      <BottomLeft>❤️❤️❤️🖤🖤</BottomLeft> 
       <div id="phaser"></div>
     </>
   );
