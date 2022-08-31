@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useWakeLock } from '../hooks/useWakeLock';
 import usePhaser from '../phaser/usePhaser';
 import { TopLeft, TopRight, BottomRight, BottomLeft, Overlay } from './styled';
 
@@ -19,6 +20,7 @@ const A = styled.a`
 const App = () => {
   const [open, setOpen] = useState(false);
   const { game } = usePhaser();
+  const [wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled] = useWakeLock(true);
   // console.log(game);
   return (
     <>
@@ -29,6 +31,15 @@ const App = () => {
           <A href="https://github.com/norgeous/gh-pages-pwa/" target="_blank">
             norgeous/gh-pages-pwa
           </A>
+          <div>
+            wakelock
+            <input
+              type="checkbox"
+              checked={wakeLockEnabled}
+              onChange={() => setWakeLockEnabled(!wakeLockEnabled)}
+              disabled={!wakeLockAvailable}
+            />
+          </div>
         </Overlay>
       )}
       <TopLeft>1,000,000</TopLeft>
