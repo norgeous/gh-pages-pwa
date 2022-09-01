@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useWakeLock } from '../hooks/useWakeLock';
 import usePeer from '../hooks/usePeer';
-import usePhaser from '../phaser/usePhaser';
+import usePhaser from '../hooks/usePhaser';
 import { TopLeft, TopRight, BottomRight, BottomLeft, Overlay } from './styled';
 
 const Heading = styled.div`
@@ -20,13 +20,13 @@ const A = styled.a`
 
 const App = () => {
   const [open, setOpen] = useState(true);
-  const { game } = usePhaser();
+  const { score, game } = usePhaser();
   const { hardCodedPeerIds, peerId, connections2, broadcast } = usePeer();
   const [wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled] = useWakeLock(true);
   
   // const numberConnections = Object.values(connections).filter(con => con.filter(c => c?.open).length).length;
   // console.log('numberConnections', numberConnections, connections);
-  console.log(connections2);
+  console.log(game, connections2);
 
   return (
     <>
@@ -59,7 +59,7 @@ const App = () => {
           })}
         </Overlay>
       )}
-      <TopLeft>1,000,000</TopLeft>
+      <TopLeft>{1000000 + score}</TopLeft>
       <TopRight><button onClick={() => setOpen(!open)}>⚙️</button></TopRight>
       <BottomRight>🪙x22 🙎x{connections2.length + 1}</BottomRight>
       <BottomLeft>❤️❤️🖤</BottomLeft> 
