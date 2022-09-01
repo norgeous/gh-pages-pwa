@@ -39,12 +39,12 @@ const getResponse = async url => {
   // if found in cache return cached response
   const cachedResponse = await caches.match(url);
   if (cachedResponse) {
-    console.info('✅ CACHE HIT  :', url.href);
+    // console.info('✅ CACHE HIT  :', url.href);
     return cachedResponse;
   }
 
   // otherwise fetch it
-  console.info('❌ CACHE MISS :', url.href);
+  // console.info('❌ CACHE MISS :', url.href);
   const fetchedResponse = await fetch(url).catch(e => {
     console.error(url);
     console.error(e);
