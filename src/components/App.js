@@ -30,6 +30,7 @@ const App = () => {
       navigator.serviceWorker.controller.postMessage({
         type: 'MESSAGE_IDENTIFIER',
       });
+      window.location.reload();
     });
   };
   
