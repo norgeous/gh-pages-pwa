@@ -65,12 +65,16 @@ const usePeer = () => {
 
     // incoming connections from other peers
     newPeer.on('connection', conn => {
+      conn.on('open', () => {
+        console.log('incoming connection opened');
+        setConnections(newPeer.connections);
+      });
       conn.on('data', data => {
-        console.log('c-data', data);
+        console.log('incoming connection data', data);
         setConnections(newPeer.connections);
       });
       conn.on('close', () => {
-        console.log('c-close');
+        console.log('incoming connection close');
         setConnections(newPeer.connections);
       });
     });
