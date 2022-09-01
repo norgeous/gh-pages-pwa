@@ -69,7 +69,18 @@ const usePeer = () => {
 
   }, [i]);
 
-  return { hardCodedPeerIds, peerId, connections };
+  // reduce to active only connections
+  const connections2 = Object.values(connections).reduce((acc, conns) => {
+    const openConn = conns.reduce((acc, connection) => connection.open ? connection : acc, false);
+    if (!openConn) return acc;
+    return [...acc, openConn];
+  }, []);
+
+  const broadcast = (data) => {
+    connections2.forEach(connection => connection.send(data));
+  };
+
+  return { hardCodedPeerIds, peerId, connections2, broadcast };
 };
 
 export default usePeer;

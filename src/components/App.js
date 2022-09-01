@@ -21,11 +21,12 @@ const A = styled.a`
 const App = () => {
   const [open, setOpen] = useState(true);
   const { game } = usePhaser();
-  const { hardCodedPeerIds, peerId, connections } = usePeer();
+  const { hardCodedPeerIds, peerId, connections2, broadcast } = usePeer();
   const [wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled] = useWakeLock(true);
   
-  const numberConnections = Object.values(connections).filter(con => con.filter(c => c?.open).length).length;
-  console.log('numberConnections', numberConnections, connections);
+  // const numberConnections = Object.values(connections).filter(con => con.filter(c => c?.open).length).length;
+  // console.log('numberConnections', numberConnections, connections);
+  console.log(connections2);
 
   return (
     <>
@@ -50,17 +51,17 @@ const App = () => {
               <div>{id} 🫵</div>
             );
               
-            const isOpen = Object.values(connections).find(([conn]) => conn.peer === id)?.[0]?.open;
+            const conn = connections2.find(conn => conn.peer === id);
 
             return (    
-              <div>{id} {isOpen ? '✅' : '❌'}</div>
+              <div onClick={()=>broadcast('click')}>{id} {conn ? '✅' : '❌'}</div>
             );
           })}
         </Overlay>
       )}
       <TopLeft>1,000,000</TopLeft>
       <TopRight><button onClick={() => setOpen(!open)}>⚙️</button></TopRight>
-      <BottomRight>🪙x22 🙎x{numberConnections + 1}</BottomRight>
+      <BottomRight>🪙x22 🙎x{connections2.length + 1}</BottomRight>
       <BottomLeft>❤️❤️🖤</BottomLeft> 
       <div id="phaser"></div>
     </>
