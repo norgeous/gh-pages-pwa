@@ -26,7 +26,7 @@ const App = () => {
   
   // const numberConnections = Object.values(connections).filter(con => con.filter(c => c?.open).length).length;
   // console.log('numberConnections', numberConnections, connections);
-  console.log(game, connections2);
+  // console.log(game, connections2);
 
   return (
     <>
