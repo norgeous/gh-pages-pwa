@@ -56,14 +56,15 @@ const usePeer = () => {
         return conn;
       });
 
-      newPeer.on('connection', conn => {
-        conn.on('data', data => {
-          console.log('data', data);
-          setConnections(newPeer.connections);
-        });
-        conn.on('close', () => {
-          setConnections(newPeer.connections);
-        });
+    });
+
+    newPeer.on('connection', conn => {
+      conn.on('data', data => {
+        console.log('data', data);
+        setConnections(newPeer.connections);
+      });
+      conn.on('close', () => {
+        setConnections(newPeer.connections);
       });
     });
 
@@ -71,6 +72,7 @@ const usePeer = () => {
 
   // reduce to active only connections
   const connections2 = Object.values(connections).reduce((acc, conns) => {
+    console.log(conns);
     const openConn = conns.reduce((acc, connection) => connection.open ? connection : acc, false);
     if (!openConn) return acc;
     return [...acc, openConn];
