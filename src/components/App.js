@@ -67,11 +67,13 @@ const App = () => {
               <div onClick={()=>broadcast(`click from ${peerId}`)}>{id} {conn ? '✅' : '❌'}</div>
             );
           })}
-          <button onClick={updatePwa}>update</button>
         </Overlay>
       )}
       <TopLeft>{1000000 + score}</TopLeft>
-      <TopRight><button onClick={() => setOpen(!open)}>⚙️</button></TopRight>
+      <TopRight>
+        <button onClick={updatePwa}>update</button>
+        <button onClick={() => setOpen(!open)}>⚙️</button>
+      </TopRight>
       <BottomRight>🪙x22 🙎x{connections2.length + 1}</BottomRight>
       <BottomLeft>❤️❤️🖤</BottomLeft> 
       <div id="phaser"></div>
