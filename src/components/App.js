@@ -23,6 +23,15 @@ const App = () => {
   const { score, game } = usePhaser();
   const { hardCodedPeerIds, peerId, connections2, broadcast } = usePeer();
   const [wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled] = useWakeLock(true);
+
+  const updatePwa = () => {
+    navigator.serviceWorker.ready.then((registration) => {
+      // At this point, a Service Worker is controlling the current page
+      navigator.serviceWorker.controller.postMessage({
+        type: 'MESSAGE_IDENTIFIER',
+      });
+    });
+  };
   
   // const numberConnections = Object.values(connections).filter(con => con.filter(c => c?.open).length).length;
   // console.log('numberConnections', numberConnections, connections);
@@ -57,6 +66,7 @@ const App = () => {
               <div onClick={()=>broadcast(`click from ${peerId}`)}>{id} {conn ? '✅' : '❌'}</div>
             );
           })}
+          <button onClick={updatePwa}>update</button>
         </Overlay>
       )}
       <TopLeft>{1000000 + score}</TopLeft>
