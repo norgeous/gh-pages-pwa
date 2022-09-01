@@ -38,7 +38,7 @@ const usePeer = () => {
 
       setPeerId(newPeer.id);
 
-      // connect to all predefined peer ids
+      // outgoing connections to all predefined peer ids
       const newConnections = hardCodedPeerIds.map(id => {
         const conn = newPeer.connect(id, {label: 'data'});
         conn.on('open', () => {
@@ -63,6 +63,7 @@ const usePeer = () => {
 
     });
 
+    // incoming connections from other peers
     newPeer.on('connection', conn => {
       conn.on('data', data => {
         console.log('c-data', data);
@@ -73,7 +74,6 @@ const usePeer = () => {
         setConnections(newPeer.connections);
       });
     });
-
   }, [i]);
 
   // reduce to active only connections
