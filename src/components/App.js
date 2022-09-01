@@ -19,7 +19,7 @@ const A = styled.a`
 `;
 
 const App = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const { score, game } = usePhaser();
   const { hardCodedPeerIds, peerId, connections2, broadcast } = usePeer();
   const [wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled] = useWakeLock(true);
