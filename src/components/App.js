@@ -21,7 +21,7 @@ const A = styled.a`
 const App = () => {
   const [open, setOpen] = useState(true);
   const { game } = usePhaser();
-  const { peerId, connections } = usePeer();
+  const { hardCodedPeerIds, peerId, connections } = usePeer();
   const [wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled] = useWakeLock(true);
   
   const numberConnections = Object.values(connections).filter(con => con.filter(c => c?.open).length).length;
@@ -45,7 +45,17 @@ const App = () => {
               disabled={!wakeLockAvailable}
             />
           </div>
-          peerId: {peerId}
+          {hardCodedPeerIds.map(id => {
+            if(id === peerId) return (
+              <div>{id} 🫵</div>
+            );
+              
+            const isOpen = Object.values(connections).find(([conn]) => conn.peer === id)?.[0]?.open;
+
+            return (    
+              <div>{id} {isOpen ? '✅' : '❌'}</div>
+            );
+          })}
         </Overlay>
       )}
       <TopLeft>1,000,000</TopLeft>

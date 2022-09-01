@@ -32,6 +32,7 @@ const usePeer = () => {
     newPeer.on('open', () => {
 
       // helps to always fire a message on refresh / close window
+      // because close / disconnected events dont seem to always fire
       window.onbeforeunload = () => {
         Object.values(newPeer.connections).forEach(([conn]) => {
           conn.send(`goodbye from ${newPeer.id}!`);
@@ -57,7 +58,7 @@ const usePeer = () => {
 
       newPeer.on('connection', conn => {
         conn.on('data', data => {
-          console.log('data',data);
+          console.log('data', data);
           setConnections(newPeer.connections);
         });
         conn.on('close', () => {
@@ -68,7 +69,7 @@ const usePeer = () => {
 
   }, [i]);
 
-  return { peerId, connections };
+  return { hardCodedPeerIds, peerId, connections };
 };
 
 export default usePeer;
