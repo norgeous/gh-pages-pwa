@@ -54,7 +54,7 @@ const App = () => {
             const conn = connections2.find(conn => conn.peer === id);
 
             return (    
-              <div onClick={()=>broadcast('click')}>{id} {conn ? '✅' : '❌'}</div>
+              <div onClick={()=>broadcast(`click from ${peerId}`)}>{id} {conn ? '✅' : '❌'}</div>
             );
           })}
         </Overlay>

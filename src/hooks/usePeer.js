@@ -21,11 +21,8 @@ const usePeer = () => {
   useEffect(() => {
     const newPeer = new Peer(hardCodedPeerIds[i]);
 
-    newPeer.on('error', (err) => {
-      setConnections(newPeer.connections);
-    });
-
     // if id is already taken, the peer will close immediately, try the next id in the list
+    newPeer.on('error', () => setConnections(newPeer.connections));
     newPeer.on('close', () => setI(i + 1));
 
     // if id is free, the peer will open
@@ -49,8 +46,16 @@ const usePeer = () => {
           conn.send(`hello from ${newPeer.id}!`);
           setConnections(newPeer.connections);
         });
+        conn.on('close', () => {
+          console.log(`close ${id}`);
+          setConnections(newPeer.connections);
+        });
         conn.on('disconnected', () => {
           console.log(`disconnected from ${id}`);
+          setConnections(newPeer.connections);
+        });
+        conn.on('data', (data) => {
+          console.log('data', data);
           setConnections(newPeer.connections);
         });
         return conn;
@@ -60,10 +65,11 @@ const usePeer = () => {
 
     newPeer.on('connection', conn => {
       conn.on('data', data => {
-        console.log('data', data);
+        console.log('c-data', data);
         setConnections(newPeer.connections);
       });
       conn.on('close', () => {
+        console.log('c-close');
         setConnections(newPeer.connections);
       });
     });
@@ -72,7 +78,7 @@ const usePeer = () => {
 
   // reduce to active only connections
   const connections2 = Object.values(connections).reduce((acc, conns) => {
-    console.log(conns);
+    // console.log(conns);
     const openConn = conns.reduce((acc, connection) => connection.open ? connection : acc, false);
     if (!openConn) return acc;
     return [...acc, openConn];
