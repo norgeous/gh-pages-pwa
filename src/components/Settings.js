@@ -8,6 +8,17 @@ const Settings = ({
 }) => {
   const [wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled] = useWakeLock(true);
 
+  const updatePwa = async () => {
+    await navigator.serviceWorker.ready;
+    // At this point, a Service Worker is controlling the current page
+    navigator.serviceWorker.controller.postMessage({
+      type: 'MESSAGE_IDENTIFIER',
+    });
+    window.location.reload();
+  };
+  
+  const reload = () => window.location.reload();
+
   return (
     <>
       {open && (
@@ -26,6 +37,9 @@ const Settings = ({
               disabled={!wakeLockAvailable}
             />
           </div>
+          
+          <div><button onClick={reload}>♺ Reload</button></div>
+          <div><button onClick={updatePwa}>🌀 Clear cache and reload</button></div>
         </Modal>
       )}
     </>

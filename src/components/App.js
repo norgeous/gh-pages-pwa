@@ -14,15 +14,6 @@ const App = () => {
   const { score, game } = usePhaser();
   const { hardCodedPeerIds, peerId, connections2, broadcast } = usePeer();
 
-  const updatePwa = async () => {
-    await navigator.serviceWorker.ready;
-    // At this point, a Service Worker is controlling the current page
-    navigator.serviceWorker.controller.postMessage({
-      type: 'MESSAGE_IDENTIFIER',
-    });
-    window.location.reload();
-  };
-
   return (
     <>
       <Settings
@@ -39,7 +30,6 @@ const App = () => {
       />
       <TopLeft>{1000000 + score}</TopLeft>
       <TopRight>
-        <Button onClick={updatePwa}>⬆️</Button>
         <Button onClick={() => setRoute('NETWORK')}>🙎x{connections2.length + 1}</Button>
         <Button onClick={() => setRoute('SETTINGS')}>⚙️</Button>
       </TopRight>
