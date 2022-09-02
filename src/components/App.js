@@ -71,7 +71,7 @@ const App = () => {
       )}
       <TopLeft>{1000000 + score}</TopLeft>
       <TopRight>
-        <button onClick={updatePwa}>update</button>
+        <button onClick={updatePwa}>⬆️</button>
         <button onClick={() => setOpen(!open)}>⚙️</button>
       </TopRight>
       <BottomRight>🪙x22 🙎x{connections2.length + 1}</BottomRight>
