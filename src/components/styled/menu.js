@@ -12,6 +12,6 @@ export const Button = styled.button`
   width: 100%;
   display: flex;
   gap: 10px;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   box-sizing: border-box;
 `;
