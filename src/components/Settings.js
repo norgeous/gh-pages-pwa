@@ -1,12 +1,14 @@
 import React from 'react';
+import useWakeLock from '../hooks/useWakeLock';
 import Modal from './Modal';
 import { Heading, A } from './styled/common';
 
 const Settings = ({
   open, onClose,
   hardCodedPeerIds, peerId, connections2, broadcast,
-  wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled,
 }) => {
+  const [wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled] = useWakeLock(true);
+
   return (
     <>
       {open && (

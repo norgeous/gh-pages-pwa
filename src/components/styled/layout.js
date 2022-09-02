@@ -43,10 +43,11 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 100;
 `;
 
 export const OverlayInner = styled.div`
   background: #4049;
   padding: 20px;
+  z-index: 200;
 `;

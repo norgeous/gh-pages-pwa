@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-import useWakeLock from '../hooks/useWakeLock';
 import usePeer from '../hooks/usePeer';
 import usePhaser from '../hooks/usePhaser';
 
 import Settings from './Settings';
 import { TopLeft, TopRight, BottomRight, BottomLeft } from './styled/layout';
-import { Heading, A, Button } from './styled/common';
+import { Button } from './styled/common';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -14,7 +13,6 @@ const App = () => {
 
   const { score, game } = usePhaser();
   const { hardCodedPeerIds, peerId, connections2, broadcast } = usePeer();
-  const [wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled] = useWakeLock(true);
 
   const updatePwa = async () => {
     await navigator.serviceWorker.ready;
@@ -30,14 +28,10 @@ const App = () => {
       <Settings
         open={open}
         onClose={() => setOpen(false)}
-
         hardCodedPeerIds={hardCodedPeerIds}
         peerId={peerId}
         connections2={connections2}
         broadcast={broadcast}
-        wakeLockAvailable={wakeLockAvailable}
-        wakeLockEnabled={wakeLockEnabled}
-        setWakeLockEnabled={setWakeLockEnabled}
       />
       <TopLeft>{1000000 + score}</TopLeft>
       <TopRight>
