@@ -12,7 +12,7 @@ const Network = ({
         <Modal onClose={onClose}>
           {hardCodedPeerIds.map(id => {
             if(id === peerId) return (
-              <div>{id} 🫵</div>
+              <Button onClick={()=>broadcast(`click from ${peerId}`)}>{id} 🫵</Button>
             );
               
             const conn = connections2.find(conn => conn.peer === id);

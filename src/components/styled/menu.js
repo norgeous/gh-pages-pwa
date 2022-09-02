@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-export const Menu = styled.div`
-`;
-
 export const Button = styled.button`
   /* border: 1px solid red; */
   border: 0;
@@ -13,4 +10,8 @@ export const Button = styled.button`
   cursor: pointer;
   display: block;
   width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  box-sizing: border-box;
 `;

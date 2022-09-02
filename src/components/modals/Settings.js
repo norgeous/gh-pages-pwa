@@ -23,10 +23,10 @@ const Settings = ({ open, onClose, setRoute }) => {
       {open && (
         <Modal onClose={onClose}>
           <Heading>Settings</Heading>
-          <Button onClick={() => setRoute('MAINMENU')}>Main Menu</Button>
-          <Button onClick={reload}>♻️ Reload</Button>
-          <Button onClick={updatePwa}>🌀 Clear cache and reload</Button>
-          <label>
+          <Button onClick={() => setRoute('MAINMENU')}><span>🕹️</span><span>Main Menu</span></Button>
+          <Button onClick={reload}><span>♻️</span><span>Reload</span></Button>
+          <Button onClick={updatePwa}><span>🌀</span><span>Clear cache and reload</span></Button>
+          <Button as="label">
             <input
               type="checkbox"
               checked={wakeLockEnabled}
@@ -35,7 +35,7 @@ const Settings = ({ open, onClose, setRoute }) => {
             />
             {' '}
             Prevent sleep (wakelock)
-          </label>
+          </Button>
         </Modal>
       )}
     </>
