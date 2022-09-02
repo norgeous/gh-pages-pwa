@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const available = 'wakeLock' in navigator;
 let wakeLock;
 
-export const useWakeLock = (defaultEnabled) => {
+const useWakeLock = (defaultEnabled) => {
   const [enabled, setEnabled] = useState(defaultEnabled);
   
   useEffect(async () => {
@@ -18,3 +18,5 @@ export const useWakeLock = (defaultEnabled) => {
 
   return [available, enabled, setEnabled];
 };
+
+export default useWakeLock;

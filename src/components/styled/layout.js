@@ -38,8 +38,15 @@ export const BottomLeft = styled.div`
 
 export const Overlay = styled.div`
   position: absolute;
-  /* inset: 100px; */
-  padding: 20px;
+  inset: 0;
+  background: #0009;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+`;
+
+export const OverlayInner = styled.div`
   background: #4049;
-  text-align: center;
+  padding: 20px;
 `;
