@@ -11,9 +11,17 @@ const hardCodedPeerIds = [
 
 const usePeer = () => {
   const [i, setI] = useState(0);
-  // const [peer, setPeer] = useState();
   const [peerId, setPeerId] = useState();
   const [connections, setConnections] = useState({});
+  const [peerData, setPeerData] = useState({});
+
+  const setPeerDataById = (id, data) => setPeerData(oldPeerData => {
+    oldPeerData[id] = {
+      ...oldPeerData[id],
+      ...data,
+    };
+    return oldPeerData;
+  }, []);
 
   useEffect(() => {
     const newPeer = new Peer(hardCodedPeerIds[i]);
@@ -29,7 +37,7 @@ const usePeer = () => {
       // because close / disconnected events dont seem to always fire
       window.onbeforeunload = () => {
         Object.values(newPeer.connections).forEach(([conn]) => {
-          conn.send(`goodbye from ${newPeer.id}!`);
+          conn.send({message: `goodbye from ${newPeer.id}!`});
         });
       };
 
@@ -40,7 +48,7 @@ const usePeer = () => {
         const conn = newPeer.connect(id, {label: 'data'});
         conn.on('open', () => {
           console.log(`connected to ${id}`);
-          conn.send(`hello from ${newPeer.id}!`);
+          conn.send({message:`hello from ${newPeer.id}!`});
           setConnections(newPeer.connections);
         });
         conn.on('close', () => {
@@ -53,6 +61,7 @@ const usePeer = () => {
         });
         conn.on('data', (data) => {
           console.log('data', data);
+          setPeerDataById(id, data);
           setConnections(newPeer.connections);
         });
         return conn;
@@ -63,15 +72,21 @@ const usePeer = () => {
     // incoming connections from other peers
     newPeer.on('connection', conn => {
       conn.on('open', () => {
-        console.log('incoming connection opened');
-        setConnections(newPeer.connections);
-      });
-      conn.on('data', data => {
-        console.log('incoming connection data', data);
+        console.log('incoming connection opened', conn);
+        conn.send({message: `hello from ${newPeer.id}!`});
         setConnections(newPeer.connections);
       });
       conn.on('close', () => {
         console.log('incoming connection close');
+        setConnections(newPeer.connections);
+      });
+      conn.on('disconnected', () => {
+        console.log(`incomming connection disconnected`);
+        setConnections(newPeer.connections);
+      });
+      conn.on('data', data => {
+        console.log('incoming connection data', conn, data);
+        setPeerDataById(conn.peer, data);
         setConnections(newPeer.connections);
       });
     });
@@ -89,7 +104,7 @@ const usePeer = () => {
     connections2.forEach(connection => connection.send(data));
   };
 
-  return { hardCodedPeerIds, peerId, connections2, broadcast };
+  return { hardCodedPeerIds, peerId, connections2, broadcast, peerData };
 };
 
 export default usePeer;

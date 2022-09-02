@@ -27,6 +27,15 @@ export const BottomRight = styled.div`
   padding: 20px;
 `;
 
+export const Bottom = styled.div`
+  position: absolute;
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: auto;
+  padding: 20px;
+`;
+
 export const BottomLeft = styled.div`
   position: absolute;
   top: auto;

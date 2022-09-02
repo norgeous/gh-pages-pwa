@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import usePeer from '../hooks/usePeer';
 import usePhaser from '../hooks/usePhaser';
@@ -6,14 +6,17 @@ import usePhaser from '../hooks/usePhaser';
 import MainMenu from './modals/MainMenu';
 import Settings from './modals/Settings';
 import Network from './modals/Network';
-import { TopLeft, TopRight, BottomRight, BottomLeft } from './styled/layout';
+import { TopLeft, TopRight, BottomRight, Bottom, BottomLeft } from './styled/layout';
 import { Button } from './styled/common';
 
 const App = () => {
   const [route, setRoute] = useState('MAINMENU');
+  const [position, setPosition] = useState(50);
 
   const { score, game } = usePhaser();
-  const { hardCodedPeerIds, peerId, connections2, broadcast } = usePeer();
+  const { hardCodedPeerIds, peerId, connections2, broadcast, peerData } = usePeer();
+
+  useEffect(() => broadcast({ position }), [position]);
 
   return (
     <>
@@ -40,6 +43,17 @@ const App = () => {
         <Button onClick={() => setRoute('SETTINGS')}>⚙️</Button>
       </TopRight>
       <BottomRight>🪙x22</BottomRight>
+      <Bottom>
+        <pre>{JSON.stringify(peerData, null, 2)}</pre>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          step={10}
+          value={position}
+          onChange={e => setPosition(e.target.value)}
+        />
+      </Bottom>
       <BottomLeft>❤️❤️🖤</BottomLeft> 
       <div id="phaser"></div>
     </>

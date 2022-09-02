@@ -58,7 +58,7 @@ const getConfig = ({ setScore }) => {
     physics: {
       default: 'arcade',
       arcade: {
-        gravity: { y: 200 }
+        // gravity: { y: 200 }
       }
     },
     scene: {
