@@ -7,9 +7,6 @@ const hardCodedPeerIds = [
   'my-pwa-multiplayer-id-02',
   'my-pwa-multiplayer-id-03',
   'my-pwa-multiplayer-id-04',
-  'my-pwa-multiplayer-id-05',
-  'my-pwa-multiplayer-id-06',
-  'my-pwa-multiplayer-id-07',
 ];
 
 const usePeer = () => {
