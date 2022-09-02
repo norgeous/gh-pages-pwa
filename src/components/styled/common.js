@@ -7,6 +7,7 @@ export const FlexR = styled.div`
 
 export const Heading = styled.div`
   font-size: 30px;
+  text-align: center;
 `;
 
 export const A = styled.a`
