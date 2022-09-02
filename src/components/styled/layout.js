@@ -50,4 +50,7 @@ export const OverlayInner = styled.div`
   background: #4049;
   padding: 20px;
   z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;

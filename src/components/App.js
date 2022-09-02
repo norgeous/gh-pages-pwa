@@ -3,22 +3,28 @@ import React, { useState } from 'react';
 import usePeer from '../hooks/usePeer';
 import usePhaser from '../hooks/usePhaser';
 
-import Settings from './Settings';
-import Network from './Network';
+import MainMenu from './modals/MainMenu';
+import Settings from './modals/Settings';
+import Network from './modals/Network';
 import { TopLeft, TopRight, BottomRight, BottomLeft } from './styled/layout';
 import { Button } from './styled/common';
 
 const App = () => {
-  const [route, setRoute] = useState();
+  const [route, setRoute] = useState('MAINMENU');
 
   const { score, game } = usePhaser();
   const { hardCodedPeerIds, peerId, connections2, broadcast } = usePeer();
 
   return (
     <>
+      <MainMenu
+        open={route === 'MAINMENU'}
+        onClose={() => setRoute()}
+      />
       <Settings
         open={route === 'SETTINGS'}
         onClose={() => setRoute()}
+        setRoute={setRoute}
       />
       <Network
         open={route === 'NETWORK'}

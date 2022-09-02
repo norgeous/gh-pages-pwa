@@ -1,5 +1,6 @@
 import React from 'react';
-import Modal from './Modal';
+import Modal from '../Modal';
+import { Button } from '../styled/menu';
 
 const Network = ({
   open, onClose,
@@ -17,7 +18,7 @@ const Network = ({
             const conn = connections2.find(conn => conn.peer === id);
 
             return (    
-              <div onClick={()=>broadcast(`click from ${peerId}`)}>{id} {conn ? '✅' : '❌'}</div>
+              <Button onClick={()=>broadcast(`click from ${peerId}`)}>{id} {conn ? '✅' : '❌'}</Button>
             );
           })}
         </Modal>

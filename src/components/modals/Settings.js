@@ -1,11 +1,10 @@
 import React from 'react';
-import useWakeLock from '../hooks/useWakeLock';
-import Modal from './Modal';
-import { Heading, A } from './styled/common';
+import useWakeLock from '../../hooks/useWakeLock';
+import Modal from '../Modal';
+import { Heading } from '../styled/common';
+import { Button } from '../styled/menu';
 
-const Settings = ({
-  open, onClose,
-}) => {
+const Settings = ({ open, onClose, setRoute }) => {
   const [wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled] = useWakeLock(true);
 
   const updatePwa = async () => {
@@ -23,23 +22,20 @@ const Settings = ({
     <>
       {open && (
         <Modal onClose={onClose}>
-          <img src="icon.svg" width="80" />
-          <Heading>React app!</Heading>
-          <A href="https://github.com/norgeous/gh-pages-pwa/" target="_blank">
-            norgeous/gh-pages-pwa
-          </A>
-          <div>
-            Prevent sleep (wakelock)
+          <Heading>Settings</Heading>
+          <Button onClick={() => setRoute('MAINMENU')}>Main Menu</Button>
+          <Button onClick={reload}>♻️ Reload</Button>
+          <Button onClick={updatePwa}>🌀 Clear cache and reload</Button>
+          <label>
             <input
               type="checkbox"
               checked={wakeLockEnabled}
               onChange={() => setWakeLockEnabled(!wakeLockEnabled)}
               disabled={!wakeLockAvailable}
             />
-          </div>
-          
-          <div><button onClick={reload}>♺ Reload</button></div>
-          <div><button onClick={updatePwa}>🌀 Clear cache and reload</button></div>
+            {' '}
+            Prevent sleep (wakelock)
+          </label>
         </Modal>
       )}
     </>
