@@ -5,7 +5,6 @@ import { Heading, A } from './styled/common';
 
 const Settings = ({
   open, onClose,
-  hardCodedPeerIds, peerId, connections2, broadcast,
 }) => {
   const [wakeLockAvailable, wakeLockEnabled, setWakeLockEnabled] = useWakeLock(true);
 
@@ -27,17 +26,6 @@ const Settings = ({
               disabled={!wakeLockAvailable}
             />
           </div>
-          {hardCodedPeerIds.map(id => {
-            if(id === peerId) return (
-              <div>{id} 🫵</div>
-            );
-              
-            const conn = connections2.find(conn => conn.peer === id);
-
-            return (    
-              <div onClick={()=>broadcast(`click from ${peerId}`)}>{id} {conn ? '✅' : '❌'}</div>
-            );
-          })}
         </Modal>
       )}
     </>

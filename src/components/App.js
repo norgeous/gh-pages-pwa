@@ -4,11 +4,11 @@ import usePeer from '../hooks/usePeer';
 import usePhaser from '../hooks/usePhaser';
 
 import Settings from './Settings';
+import Network from './Network';
 import { TopLeft, TopRight, BottomRight, BottomLeft } from './styled/layout';
 import { Button } from './styled/common';
 
 const App = () => {
-  const [open, setOpen] = useState(false);
   const [route, setRoute] = useState();
 
   const { score, game } = usePhaser();
@@ -26,8 +26,12 @@ const App = () => {
   return (
     <>
       <Settings
-        open={open}
-        onClose={() => setOpen(false)}
+        open={route === 'SETTINGS'}
+        onClose={() => setRoute()}
+      />
+      <Network
+        open={route === 'NETWORK'}
+        onClose={() => setRoute()}
         hardCodedPeerIds={hardCodedPeerIds}
         peerId={peerId}
         connections2={connections2}
@@ -36,8 +40,8 @@ const App = () => {
       <TopLeft>{1000000 + score}</TopLeft>
       <TopRight>
         <Button onClick={updatePwa}>⬆️</Button>
-        <Button onClick={() => setOpen(true)}>🙎x{connections2.length + 1}</Button>
-        <Button onClick={() => setOpen(true)}>⚙️</Button>
+        <Button onClick={() => setRoute('NETWORK')}>🙎x{connections2.length + 1}</Button>
+        <Button onClick={() => setRoute('SETTINGS')}>⚙️</Button>
       </TopRight>
       <BottomRight>🪙x22</BottomRight>
       <BottomLeft>❤️❤️🖤</BottomLeft> 
