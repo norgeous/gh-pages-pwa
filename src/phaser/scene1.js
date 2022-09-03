@@ -1,8 +1,8 @@
 function preload () {
   this.load.setBaseURL('https://labs.phaser.io');
   this.load.image('sky', 'assets/skies/space3.png');
-  this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-  this.load.image('red', 'assets/particles/fire2.png');
+  // this.load.image('logo', 'assets/sprites/phaser3-logo.png');
+  this.load.image('red', 'assets/particles/fire1.png');
 }
 
 const getConfig = ({ setScore }) => {
@@ -17,10 +17,14 @@ const getConfig = ({ setScore }) => {
       scale: { start: 1, end: 0 },
       blendMode: 'ADD'
     });
-    const logo = this.physics.add.image(width/2, height/4, 'logo');
-    logo.setVelocity(100, 200);
-    logo.setBounce(1, 1);
-    logo.setCollideWorldBounds(true);
+
+    const logo = this.add.text(width/2, height/4, '🥴', { font: '100px Arial', align: 'center' }).setOrigin(0.5);
+    this.physics.world.enable(logo);
+    logo.body.velocity.x = 100;
+    logo.body.velocity.y = 200;
+    logo.body.bounce.x = 1;
+    logo.body.bounce.y = 1;
+    logo.body.collideWorldBounds = true;
     logo.body.onWorldBounds = true;
     emitter.startFollow(logo);
 
