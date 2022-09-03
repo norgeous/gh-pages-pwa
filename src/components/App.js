@@ -18,6 +18,13 @@ const App = () => {
 
   useEffect(() => broadcast({ position }), [position]);
 
+  const setPlayerPosition = p => {
+    setPosition(p);
+    console.log(game);
+    const player = game.scene.scenes[0].children.list.find(({name})=>name==='player');
+    player.setRotation((p/100)*Math.PI);
+  };
+
   return (
     <>
       <MainMenu
@@ -49,9 +56,9 @@ const App = () => {
           type="range"
           min={0}
           max={100}
-          step={10}
+          step={1}
           value={position}
-          onChange={e => setPosition(e.target.value)}
+          onChange={e => setPlayerPosition(e.target.value)}
         />
       </Bottom>
       <BottomLeft>❤️❤️🖤</BottomLeft> 

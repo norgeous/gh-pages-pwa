@@ -30,6 +30,17 @@ const getConfig = ({ setScore }) => {
     logo2.setCollideWorldBounds(true);
     logo2.body.onWorldBounds = true;
 
+    const player = this.add.rectangle(200, 150, 150, 10, 0x6666ff);    
+    this.physics.add.existing(player);
+    player.name = 'player';
+    player.body.bounce.x = 1;
+    player.body.bounce.y = 1;
+    player.body.collideWorldBounds = true;
+
+    this.physics.add.collider(logo, logo2);
+    this.physics.add.collider(player, logo);
+    this.physics.add.collider(player, logo2);
+
     this.physics.world.on('worldbounds', thing => {
       // console.log(thing);
       setScore(s => s + 1);
