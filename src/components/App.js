@@ -11,7 +11,7 @@ import { Button } from './styled/common';
 
 const App = () => {
   const [route, setRoute] = useState('MAINMENU');
-  const [position, setPosition] = useState(50);
+  const [position, setPosition] = useState(0);
 
   const { score, game } = usePhaser();
   const { hardCodedPeerIds, peerId, connections2, broadcast, peerData } = usePeer();
@@ -22,7 +22,7 @@ const App = () => {
     setPosition(p);
     const player = game.scene.scenes[0].physics.world.bodies.entries.find(({gameObject}) => gameObject.name === 'player');
     console.log({game, player});
-    player.setVelocity(p);
+    player.setVelocity(p,0);
   };
 
   return (
@@ -54,11 +54,12 @@ const App = () => {
         <pre>{JSON.stringify(peerData, null, 2)}</pre>
         <input
           type="range"
-          min={0}
+          min={-100}
           max={100}
           step={1}
           value={position}
           onChange={e => setPlayerPosition(e.target.value)}
+          onMouseUp={() => setPlayerPosition(0)}
         />
       </Bottom>
       <BottomLeft>❤️❤️🖤</BottomLeft> 

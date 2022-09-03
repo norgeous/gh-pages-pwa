@@ -24,22 +24,20 @@ const getConfig = ({ setScore }) => {
     logo.body.onWorldBounds = true;
     emitter.startFollow(logo);
 
-    const logo2 = this.physics.add.image(width/4, height/4, 'logo');
-    logo2.setVelocity(400, 800);
-    logo2.setBounce(.9, .9);
-    logo2.setCollideWorldBounds(true);
-    logo2.body.onWorldBounds = true;
-
-    const player = this.add.rectangle(200, 150, 150, 10, 0x6666ff);    
+    const player = this.add.rectangle(
+      this.physics.world.bounds.width/2,
+      this.physics.world.bounds.height - 200,
+      150, 10,
+      0x6666ff,
+    );    
     this.physics.add.existing(player);
     player.name = 'player';
     player.body.bounce.x = 1;
     player.body.bounce.y = 1;
+    player.body.setImmovable();
     player.body.collideWorldBounds = true;
 
-    this.physics.add.collider(logo, logo2);
     this.physics.add.collider(player, logo);
-    this.physics.add.collider(player, logo2);
 
     this.physics.world.on('worldbounds', thing => {
       // console.log(thing);
