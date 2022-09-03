@@ -54,8 +54,8 @@ const App = () => {
         <pre>{JSON.stringify(peerData, null, 2)}</pre>
         <input
           type="range"
-          min={-100}
-          max={100}
+          min={-500}
+          max={500}
           step={1}
           value={position}
           onChange={e => setPlayerPosition(e.target.value)}

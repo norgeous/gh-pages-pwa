@@ -14,16 +14,16 @@ const getConfig = ({ setScore }) => {
     const particles = this.add.particles('red');
     const emitter = particles.createEmitter({
       speed: 100,
-      scale: { start: 1, end: 0 },
+      scale: { start: 0.25, end: 0 },
       blendMode: 'ADD'
     });
 
-    const logo = this.add.text(width/2, height/4, '🥴', { font: '100px Arial', align: 'center' }).setOrigin(0.5);
+    const logo = this.add.text(width/2, height/4, '🥴', { font: '50px Arial', align: 'center' }).setOrigin(0.5);
     this.physics.world.enable(logo);
-    logo.body.velocity.x = 100;
-    logo.body.velocity.y = 200;
-    logo.body.bounce.x = 1;
-    logo.body.bounce.y = 1;
+    logo.body.setCircle(26, 5);
+    logo.body.setBounce(1, 1);
+    logo.body.setVelocity(100, -200);
+    logo.body.setMaxVelocity(500);
     logo.body.collideWorldBounds = true;
     logo.body.onWorldBounds = true;
     emitter.startFollow(logo);
@@ -39,6 +39,8 @@ const getConfig = ({ setScore }) => {
     player.body.bounce.x = 1;
     player.body.bounce.y = 1;
     player.body.setImmovable();
+    player.body.setAllowGravity(false);
+    // player.body.setGravity(false);
     player.body.collideWorldBounds = true;
 
     this.physics.add.collider(player, logo);
@@ -71,7 +73,8 @@ const getConfig = ({ setScore }) => {
     physics: {
       default: 'arcade',
       arcade: {
-        // gravity: { y: 200 }
+        // debug: true,
+        gravity: { y: 200 }
       }
     },
     scene: {
