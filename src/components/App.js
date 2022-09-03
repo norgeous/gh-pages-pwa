@@ -20,9 +20,9 @@ const App = () => {
 
   const setPlayerPosition = p => {
     setPosition(p);
-    console.log(game);
-    const player = game.scene.scenes[0].children.list.find(({name})=>name==='player');
-    player.setRotation((p/100)*Math.PI);
+    const player = game.scene.scenes[0].physics.world.bodies.entries.find(({gameObject}) => gameObject.name === 'player');
+    console.log({game, player});
+    player.setVelocity(p);
   };
 
   return (
