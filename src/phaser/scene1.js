@@ -22,7 +22,7 @@ const getConfig = ({ setScore }) => {
     this.physics.world.enable(logo);
     logo.body.setCircle(26, 5);
     logo.body.setBounce(1, 1);
-    logo.body.setVelocity(100, -200);
+    logo.body.setVelocity(0, -200);
     logo.body.setMaxVelocity(500);
     logo.body.collideWorldBounds = true;
     logo.body.onWorldBounds = true;
@@ -31,13 +31,12 @@ const getConfig = ({ setScore }) => {
     const player = this.add.rectangle(
       this.physics.world.bounds.width/2,
       this.physics.world.bounds.height - 200,
-      150, 10,
+      150, 20,
       0x6666ff,
     );    
     this.physics.add.existing(player);
     player.name = 'player';
-    player.body.bounce.x = 1;
-    player.body.bounce.y = 1;
+    player.body.setBounce(1, 1);
     player.body.setImmovable();
     player.body.setAllowGravity(false);
     // player.body.setGravity(false);
