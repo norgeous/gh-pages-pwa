@@ -59,8 +59,8 @@ const App = () => {
           step={1}
           value={position}
           onChange={e => setPlayerPosition(e.target.value)}
-          onMouseUp={() => setPlayerPosition(0)}
           onTouchEnd={() => setPlayerPosition(0)}
+          onMouseUp={() => setPlayerPosition(0)}
         />
       </Bottom>
       <BottomLeft>❤️❤️🖤</BottomLeft> 
