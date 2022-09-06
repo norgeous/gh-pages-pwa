@@ -12,7 +12,6 @@ https://norgeous.github.io/gh-pages-pwa
   - via importmap and skypack cdn
   - styled-components
   - less css compiler
-  - phaser.io
 - Clientside React and ES transpilation
   - via babel-standalone (within service-worker)
 - Fullscreen PWA
